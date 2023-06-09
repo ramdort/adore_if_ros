@@ -6,7 +6,6 @@ SHELL:=/bin/bash
 all: root_check docker_group_check build
 
 ROOT_DIR:=$(shell dirname "$(realpath $(firstword $(MAKEFILE_LIST)))")
-MAKEFILE_PATH:=$(shell dirname "$(abspath "$(lastword $(MAKEFILE_LIST)"))")
 
 
 .EXPORT_ALL_VARIABLES:
