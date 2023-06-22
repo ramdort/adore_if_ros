@@ -10,3 +10,4 @@ cppcheck_docker
 lizard_docker
 cpplint_docker
 make_gadgets
+*.log

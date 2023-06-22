@@ -15,6 +15,7 @@ DOCKER_CONFIG?=
 CPP_PROJECT_DIRECTORY:="${ROOT_DIR}/adore_if_ros"
 
 include adore_if_ros.mk 
+include ${LIBADORE_SUBMODULES_PATH}/ci_teststand/ci_teststand.mk
 
 #CMAKE_PREFIX_PATH?=$(shell realpath "$$(find . -name install | grep "install" | grep -e "install/\|CPack" -v)" | tr '\n' ';') 
 CMAKE_PREFIX_PATH?=$(shell realpath "$$(find . -type d | grep "build" | grep -v "build/")" 2>/dev/null | tr '\n' ';')
