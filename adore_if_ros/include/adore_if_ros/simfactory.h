@@ -34,6 +34,7 @@
 #include "conversions/motioncommandconverter.h"
 #include "conversions/funvehiclemotionstateconverter.h"
 #include "conversions/simvehicleresetconverter.h"
+#include "conversions/simresetvehicledimensionsconverter.h"
 #include "conversions/stdconverter.h"
 #include "conversions/trafficparticipantconverter.h"
 #include "conversions/trafficsimulationfeed.h"
@@ -163,6 +164,20 @@ namespace adore
                 virtual TV2XStationIDResetFeed* getV2XStationIDResetFeed() override
                 {
                     return new Feed<int64_t,std_msgs::Int64,StdConverter>(n_,"SIM/ResetV2XStationID",10);
+                }
+                ///send simulation commands for resseting vehicle dimensions
+                virtual TVehicleDimensionsResetWriter* getVehicleDimensionsResetWriter(std::string ns) override
+                {
+                    return new Writer<adore::sim::ResetVehicleDimensions,
+                                        adore_if_ros_msg::SimResetVehicleDimensions,
+                                        SimVehicleDimensionsConverter>(n_,ns + "SIM/ResetVehicleDimensions",1);
+                }
+                ///receive simulation commands for resseting vehicle dimensions
+                virtual TVehicleDimensionsResetFeed* getVehicleDimensionsResetFeed() override
+                {
+                    return new Feed<adore::sim::ResetVehicleDimensions,
+                                        adore_if_ros_msg::SimResetVehicleDimensionsConstPtr,
+                                        SimVehicleDimensionsConverter>(n_,"SIM/ResetVehicleDimensions",1);
                 }
                 ///send simulated sensor data
                 virtual TParticipantSetWriter* getParticipantSetWriter() override
