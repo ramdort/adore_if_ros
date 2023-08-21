@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (C) 2017-2020 German Aerospace Center (DLR). 
+ * Copyright (C) 2017-2023 German Aerospace Center (DLR). 
  * Eclipse ADORe, Automated Driving Open Research https://eclipse.org/adore
  *
  * This program and the accompanying materials are made available under the 
@@ -236,7 +236,14 @@ namespace adore
                     return new Feed<adore::fun::PlanningResult,
                                       adore_if_ros_msg::PlanningResultConstPtr,
                                       PlanningResultConverter>(n_, "FUN/PlanningResult", 100);
-                }    
+                }
+                ///reads selected PlanningResult as general information about decision-making
+                virtual adore::mad::AFeed<adore::fun::PlanningResult>* getPlanningSelectFeed() override
+                {
+                    return new Feed<adore::fun::PlanningResult,
+                                      adore_if_ros_msg::PlanningResultConstPtr,
+                                      PlanningResultConverter>(n_, "FUN/PlanningSelect", 100);
+                }
                 virtual adore::mad::AWriter<adore::fun::PlanningRequest>* getPlanningRequestWriter() override
                 {
                     return new Writer<adore::fun::PlanningRequest,
