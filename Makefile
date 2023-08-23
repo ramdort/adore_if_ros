@@ -58,3 +58,5 @@ clean: set_env clean_submodules
 .PHONY: static_checks
 static_checks: lint lizard cppcheck
 
+.PHONY: test
+test: ci_test
