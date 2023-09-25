@@ -345,6 +345,20 @@ target_link_libraries(adore_feedbackcontroller_node
                           adore_if_ros_scheduling::adore_if_ros_scheduling
 )
 
+add_executable(adore_platoon_controller_node )
+target_sources(adore_platoon_controller_node PRIVATE src/adore_platoon_controller_node.cpp)
+target_include_directories(adore_platoon_controller_node PRIVATE include ${catkin_INCLUDE_DIRS})
+target_link_libraries(adore_platoon_controller_node 
+                        PRIVATE 
+                          ${catkin_LIBRARIES} 
+                          libadore::apps 
+                          libadore::params 
+                          libadore::fun 
+                          libadore::sim
+                          adore_if_ros_scheduling::adore_if_ros_scheduling
+                          
+)
+
 add_executable(adore_mapprovider_node)
 target_sources(adore_mapprovider_node PRIVATE src/adore_mapprovider_node.cpp)
 target_include_directories(adore_mapprovider_node PRIVATE include ${catkin_INCLUDE_DIRS})
@@ -1130,6 +1144,7 @@ install(
     adore_objectdetectionmodel_node
     adore_timer_node
     adore_feedbackcontroller_node
+    adore_platoon_controller_node
     adore_mapprovider_node
     adore_speedlimitprovider_node
     adore_indicatorhintprovider_node
